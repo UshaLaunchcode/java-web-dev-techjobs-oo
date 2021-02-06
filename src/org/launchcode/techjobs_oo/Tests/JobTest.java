@@ -55,7 +55,54 @@ public class JobTest {
     }
     @Test
      public void testJobsForEquality(){
-        assertFalse(test_job3 == test_job4);
+        assertFalse(test_job3.equals(test_job4));
+
         }
 
-}
+        @Test
+        public void testBlankLineBeforeAndAfter() {
+        assertEquals('\n',test_job3.toString().charAt(0));
+            assertEquals('\n',test_job3.toString().charAt(test_job3.toString().length()-1));
+
+        }
+
+     @Test
+    public void testJobsForToString(){
+
+        String expectedResult = "\n" + "ID: "+ test_job3.getId()+
+                "\n" + "Name: " + test_job3.getName() +
+                "\n" + "Employer: " + test_job3.getEmployer()+
+                "\n" + "Location: " + test_job3.getLocation()+
+                "\n" + "Position Type: " + test_job3.getPositionType()+
+                "\n" + "Core Competency: " + test_job3.getCoreCompetency()+
+                "\n"; //String.format
+
+        assertEquals(expectedResult, test_job3.toString());
+         //System.out.println(expectedResult);
+         }
+
+         @Test
+         public void testIsFieldEmpty(){
+
+             test_job3.getEmployer().setValue("");
+             test_job3.setName("");
+             test_job3.getLocation().setValue("");
+             test_job3.getPositionType().setValue("");
+             test_job3.getCoreCompetency().setValue("");
+
+             //assertEquals("Employer: Data not available", "Employer: "+test_job3.getEmployer().toString());
+             assertEquals(true,test_job3.toString().contains("Employer: Data not available"));
+             assertEquals(true, test_job3.toString().contains("Name: Data not available"));
+             assertEquals(true,test_job3.toString().contains("Location: Data not available"));
+             assertEquals(true,test_job3.toString().contains("Position Type: Data not available"));
+             assertEquals(true,test_job3.toString().contains("Core Competency: Data not available"));
+
+             }
+
+
+         }
+
+
+
+
+
